@@ -1,0 +1,16 @@
+app = "rabbitmq-fly-shopping"
+primary_region = "nrt"
+
+[build]
+image = "rabbitmq:3.12-management"
+
+# 💡 Secrets 需動態注入
+
+[[mounts]]
+destination = "/var/lib/rabbitmq"
+source = "rabbitmq_data"
+initial_size = "10" # 生產環境明確指定 Volume 大小（預設為 10GB）
+
+[[vm]]
+cpus = 1
+memory = "1gb"
